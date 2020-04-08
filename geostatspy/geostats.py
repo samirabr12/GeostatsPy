@@ -347,13 +347,20 @@ def gcum(x):
 def dpowint(xlow, xhigh, ylow, yhigh, xval, pwr):
     """Power interpolate the value of `y` between (`xlow`, `ylow`) and
     (`xhigh`, `yhigh`) for a value of `x` and a power `pwr`.
-    :param xlow: TODO
-    :param xhigh: TODO
-    :param ylow: TODO
-    :param yhigh: TODO
-    :param xval: TODO
+    :param xlow: lowest x-value for interpolation
+    :type xlow: float
+    :param xhigh: highest x-value for interpolation
+    :type xhigh: float
+    :param ylow: lowest y-value for interpolation
+    :type ylow: float
+    :param yhigh: maximum y-value for interpolation
+    :type yhigh: float
+    :param xval: x values used for interpolation calculations
+    :type xval: float or array
     :param pwr: power
-    :return: TODO
+    :type pwr: float
+    :return: the y-values that have been interpolated 
+    :type returnn: float or array
     """
     EPSLON = 1.0e-20
     if (xhigh - xlow) < EPSLON:
@@ -388,11 +395,16 @@ def setup_rotmat(c0, nst, it, cc, ang, pmx):
     """Setup rotation matrix.
     :param c0: nugget constant (isotropic)
     :param nst: number of nested structures (max. 4)
-    :param it: TODO
+    :param it: isotropic constant
+    :type it: float
     :param cc: multiplicative factor of each nested structure
-    :param ang: TODO
-    :param pmx: TODO
-    :return: TODO
+    :type cc: float
+    :param ang: the angle of rotation
+    :type ang: float
+    :param pmx: parametric of rotation matrix
+    :type pmx: float
+    :return: the angle of rotation in radians 
+    :type return: float
     """
     PI = 3.141_592_65
     DTOR = PI / 180.0
@@ -419,20 +431,35 @@ def cova2(x1, y1, x2, y2, nst, c0, pmx, cc, aa, it, ang, anis, rotmat, maxcov):
     """Calculate the covariance associated with a variogram model specified by a
     nugget effect and nested variogram structures.
     :param x1: x coordinate of first point
+    :type x1: float 
     :param y1: y coordinate of first point
+    :type y1: float
     :param x2: x coordinate of second point
+    :type x2: float
     :param y2: y coordinate of second point
+    :type y2: float
     :param nst: number of nested structures (maximum of 4)
-    :param c0: isotropic nugget constant (TODO: not used)
-    :param pmx: TODO
+    :type nst: float
+    :param c0: isotropic nugget constant
+    :type c0: float
+    :param pmx: parametric of rotation matrix
+    :type pmx: float
     :param cc: multiplicative factor of each nested structure
+    :type cc: float
     :param aa: parameter `a` of each nested structure
-    :param it: TODO
-    :param ang: TODO: not used
-    :param anis: TODO
+    :type aa: float
+    :param it: isotropic constant
+    :type it: float
+    :param ang: angle of rotation: not used
+    :type ang: float
+    :param anis: angle of rotation matrices
+    :type anis: float
     :param rotmat: rotation matrices
-    :param maxcov: TODO
-    :return: TODO
+    :type rotmat: float
+    :param maxcov: maximum value of covariance
+    :type maxcov: float
+    :return: the covariance value from the nugget effect and nested variogram structures
+    :type return: float
     """
     EPSLON = 0.000001
 
